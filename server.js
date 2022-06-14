@@ -36,19 +36,19 @@ app.post("/", (req, res) => {
   res.json(book);
 });
 
-app.get("/book/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   const index = books.findIndex((book) => {
     book.id === Number(req.params.id);
   });
-  book[index] = { ...books[index], ...req.body };
+  books[index] = { ...books[index], ...req.body };
   res.send("Got a PATCH request at /user");
 });
 
-app.put("/book/:id", (req, res) => {
+app.put("/:id", (req, res) => {
   res.send("Got a PUT request at /user");
 });
 
-app.delete("/book/:id", (req, res) => {
+app.delete("/:id", (req, res) => {
   res.send("Got a DELETE request at /user");
 });
 
