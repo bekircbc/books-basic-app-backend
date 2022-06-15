@@ -1,18 +1,24 @@
 import express from "express";
 import cors from "cors";
+import axios from "axios";
 
 import { books } from "./data/techBook.js";
+// import { nouns } from "./data/germanNouns.js";
 
 const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT || 4433;
 
-app.get("/", (req, res) => {
+//books get, post,patch,delete, put, patch
+
+/////////////////////////////////////////////////7
+
+app.get("/books", (req, res) => {
   return res.json(books);
 });
 
-app.get("/:id", (req, res) => {
+app.get("/books/:id", (req, res) => {
   console.log(req.params.id);
   const book = books.find((book) => {
     return book.id === Number(req.params.id);
@@ -20,7 +26,7 @@ app.get("/:id", (req, res) => {
   return res.json(book);
 });
 
-app.post("/", (req, res) => {
+app.post("/books", (req, res) => {
   console.log(req.body);
   /* const book = Object.assign({id:books.length+1}, req.body) */
   const maxId = books.reduce((acc, cur) => {
@@ -36,7 +42,7 @@ app.post("/", (req, res) => {
   res.json(book);
 });
 
-app.get("/:id", (req, res) => {
+app.patch("books/:id", (req, res) => {
   const index = books.findIndex((book) => {
     book.id === Number(req.params.id);
   });
@@ -44,13 +50,43 @@ app.get("/:id", (req, res) => {
   res.send("Got a PATCH request at /user");
 });
 
-app.put("/:id", (req, res) => {
+app.put("/books/:id", (req, res) => {
   res.send("Got a PUT request at /user");
 });
 
-app.delete("/:id", (req, res) => {
+app.delete("/books/:id", (req, res) => {
   res.send("Got a DELETE request at /user");
 });
+
+/////////////////////////////////////////////////////////////////////////
+
+//Node/Express server that serves HTML text
+
+///////////////////////////////////////////
+
+app.get("/text", (req, res) => {
+  res.send("welcome to this <b>website</b>");
+});
+
+//////////////////////////////////////////
+
+//Node/Express server that serves dynamic HTML
+
+///////////////////////////////////////////
+
+const nouns = (
+  await axios.get("https://edwardtanguay.netlify.app/share/germanNouns.json")
+).data;
+
+app.get("/nouns", (req, res) => {
+  res.send(
+    `<ul>${nouns
+      .map((m) => `<li>${m.article} ${m.singular}</li>`)
+      .join("")}</ul>`
+  );
+});
+
+//////////////////////////////////////////
 
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:${PORT}`);
