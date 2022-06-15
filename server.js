@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
+// import axios from "axios";
 
 import { books } from "./data/techBook.js";
-// import { nouns } from "./data/germanNouns.js";
+import { nouns } from "./data/germanNouns.js";
 
 const app = express();
 app.use(cors());
@@ -74,14 +74,16 @@ app.get("/text", (req, res) => {
 
 ///////////////////////////////////////////
 
-const nouns = (
-  await axios.get("https://edwardtanguay.netlify.app/share/germanNouns.json")
-).data;
+//for getting data from internet..
+
+// const nouns = (
+//   await axios.get("https://edwardtanguay.netlify.app/share/germanNouns.json")
+// ).data;
 
 app.get("/nouns", (req, res) => {
   res.send(
     `<ul>${nouns
-      .map((m) => `<li>${m.article} ${m.singular}</li>`)
+      .map((m) => `<li key=${m.id}>${m.article} ${m.singular}</li>`)
       .join("")}</ul>`
   );
 });
