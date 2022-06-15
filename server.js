@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-// import axios from "axios";
+import axios from "axios";
 
 import { books } from "./data/techBook.js";
 import { nouns } from "./data/germanNouns.js";
@@ -69,6 +69,16 @@ app.get("/text", (req, res) => {
 });
 
 //////////////////////////////////////////
+
+//Employes Database
+
+const employees = (
+  await axios.get("https://edwardtanguay.netlify.app/share/employees.json")
+).data;
+
+app.get("/employees", (req, res) => {
+  res.send(employees);
+});
 
 //Node/Express server that serves dynamic HTML
 
