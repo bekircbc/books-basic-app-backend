@@ -80,12 +80,18 @@ app.get("/text", (req, res) => {
 //   await axios.get("https://edwardtanguay.netlify.app/share/germanNouns.json")
 // ).data;
 
+//Dynamic Html als string in page.. must be solved..
+
+// app.get("/nouns", (req, res) => {
+//   res.send(
+//     `<ul>${nouns
+//       .map((m) => `<li key=${m.id}>${m.article} ${m.singular}</li>`)
+//       .join("")}</ul>`
+//   );
+// });
+
 app.get("/nouns", (req, res) => {
-  res.send(
-    `<ul>${nouns
-      .map((m) => `<li key=${m.id}>${m.article} ${m.singular}</li>`)
-      .join("")}</ul>`
-  );
+  res.send(nouns);
 });
 
 //////////////////////////////////////////
