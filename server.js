@@ -8,11 +8,34 @@ import { nouns } from "./data/germanNouns.js";
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 4433;
+const PORT = 4433;
 
 //books get, post,patch,delete, put, patch
 
 /////////////////////////////////////////////////7
+
+app.get("/", (req, res) => {
+  res.send(
+    `<h1>Basic Backend Page</h1>
+    <nav>
+    <a href="http://localhost:${PORT}/about">About</a> 
+    <a href="http://localhost:${PORT}/books">Books</a>
+    <a href="http://localhost:${PORT}/nouns">Nouns</a>
+    <a href="http://localhost:${PORT}/employees">Employees</a>
+    <a href="http://localhost:${PORT}/text">Text</a>
+    </nav>
+    `
+  );
+});
+
+app.get("/about", (req, res) => {
+  res.send(
+    `<h1>About</h1>
+<p>     This page is created for custom hooks, Node/Express Server. In the
+future can be a Library for tools and custom hooks in React.</p>>
+    `
+  );
+});
 
 app.get("/books", (req, res) => {
   return res.json(books);
@@ -105,6 +128,13 @@ app.get("/nouns", (req, res) => {
 });
 
 //////////////////////////////////////////
+
+//CSS file
+
+// app.get("/maincss", (req.res) => {
+//   res.send(`h1{
+//   color:blue;}`);
+// })
 
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:${PORT}`);
