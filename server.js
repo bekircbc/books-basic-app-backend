@@ -10,9 +10,27 @@ app.use(cors());
 
 const PORT = 4433;
 
+// MODEL, CONTROLLER AND VIEWS LÖSUNG
+import { siteModel } from "./models.js";
+import { siteView } from "./views.js";
+
+app.use(express.static("public"));
+
+app.get("/api/all-employees");
+
+app.get("/", (req, res) => {
+  res.send(siteView(siteModel));
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening at http://localhost:${port}`);
+});
+
+//////////////////////////////////////////////
+
 //books get, post,patch,delete, put, patch
 
-/////////////////////////////////////////////////7
+/////////////////////////////////////////////////
 
 app.get("/", (req, res) => {
   res.send(
