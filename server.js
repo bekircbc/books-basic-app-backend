@@ -31,8 +31,8 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   res.send(
     `<h1>About</h1>
-<p>     This page is created for custom hooks, Node/Express Server. In the
-future can be a Library for tools and custom hooks in React.</p>>
+<p>This page is created for custom hooks, Node/Express Server. In the
+future can be a Library for tools and custom hooks in React.</p>
     `
   );
 });
@@ -100,7 +100,7 @@ const employees = (
 ).data;
 
 app.get("/employees", (req, res) => {
-  res.send(employees);
+  return res.json(employees);
 });
 
 //Node/Express server that serves dynamic HTML
@@ -117,8 +117,9 @@ app.get("/employees", (req, res) => {
 
 // app.get("/nouns", (req, res) => {
 //   res.send(
-//     `<ul>${nouns
-//       .map((m) => `<li key=${m.id}>${m.article} ${m.singular}</li>`)
+//     `<h1>Nouns</h1>
+//     <ul>${nouns
+//       .map((m) => `<li>${m.article} ${m.singular}</li>`)
 //       .join("")}</ul>`
 //   );
 // });
