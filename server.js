@@ -18,13 +18,13 @@ app.use(express.static("public"));
 
 app.get("/api/all-employees");
 
-app.get("/", (req, res) => {
+app.get("/mvc", (req, res) => {
   res.send(siteView(siteModel));
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${port}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Listening at http://localhost:${port}`);
+// });
 
 //////////////////////////////////////////////
 
@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
     <a href="http://localhost:${PORT}/nouns">Nouns</a>
     <a href="http://localhost:${PORT}/employees">Employees</a>
     <a href="http://localhost:${PORT}/text">Text</a>
+    <a href="http://localhost:${PORT}/mvc">Text</a>
     </nav>
     `
   );
